@@ -1,0 +1,45 @@
+#MenuNav_Principal{
+    background-color: #681F84;
+    height: 100vh;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+}
+
+#Bloco_imagem_MenuNav {
+    height: 20vh;
+    width: 100%;
+}
+
+#imgNavegador {
+    height: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+#Ul_RotasMenu {
+    height: 80vh;
+    width: 90%;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center}
+
+#Ul_RotasMenu p{
+    width: 100%;
+    border-bottom: 2px solid #ff8120;
+}
+
+#Ul_RotasMenu p a{
+    color: white;
+    text-decoration: none;
+}
+
+.Btn_sair_MenuNav a{
+    color: white;
+    text-decoration: none;
+}
