@@ -57,7 +57,7 @@ const RegistrosPLacas = (props) => {
     const listaPlacas = () => {
         Axios.get(Url + "placas", {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('Cerberus-chave-autenticacao'),
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                 'Content-Type': 'application/json'
             }
         })
@@ -70,7 +70,7 @@ const RegistrosPLacas = (props) => {
     const listaEnderecos = () => {
         Axios.get(Url + "enderecos", {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('Cerberus-chave-autenticacao'),
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                 'Content-Type': 'application/json'
             }
         })
@@ -84,7 +84,7 @@ const RegistrosPLacas = (props) => {
 
         Axios.get(Url + "PlacaEndereco", {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('Cerberus-chave-autenticacao'),
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                 'Content-Type': 'application/json'
             }
         })
@@ -135,7 +135,7 @@ const RegistrosPLacas = (props) => {
         if (id === 0) {
             Axios.post(Url + "PlacaEndereco", cronometro, {
                 headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('Cerberus-chave-autenticacao'),
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                     'Content-Type': 'application/json'
                 }
             })

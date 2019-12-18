@@ -115,7 +115,7 @@ const Registro = (props) => {
     }
 
     const editar = (id) => {
-        let cronometro = placaEnderecos.filter(item => item.id === id);
+        let cronometro = placaEnderecos.filter(item => item.placaEnderecoId === placaEnderecoId);
         if (cronometro.length > 0) {
             setPlacaEnderecoId(placaEnderecoId);
             setDataEntrada(cronometro[0].dataEntrada);
@@ -167,7 +167,7 @@ const Registro = (props) => {
 
         cronometro.placaEnderecoId = placaEnderecoId;
 
-        Axios.put(Url + 'PlacaEndereco/Cronometro/' + placaEnderecoId, cronometro, {
+        Axios.put(Url + 'PlacaEndereco/Cronometro/'+ props.match.params.id, cronometro, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                 'Content-Type': 'application/json'
@@ -178,7 +178,8 @@ const Registro = (props) => {
                 toast.success('Cronometro alterado');
             })
             .catch(error => {
-                toast.error('Ocorreu um erro, tente novamente');
+                console.log(error);
+                toast.error('Não foi possível se comunica com a placa');
             })
             .finally(() => { setLoading(false) })
     }
@@ -217,7 +218,7 @@ const Registro = (props) => {
 
         cronometro.placaEnderecoId = placaEnderecoId;
 
-        Axios.put(Url + 'PlacaEndereco/' + placaEnderecoId, cronometro, {
+        Axios.put(Url + 'PlacaEndereco/' + props.match.params.id, cronometro, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                 'Content-Type': 'application/json'
@@ -280,14 +281,12 @@ const Registro = (props) => {
                                                 setTempoDesligado(e.target.value);
                                             }
                                             }
-                                            value={tempoDesligado || placaEnderecos.tempoDesligado}
+                                            value={tempoDesligado || "" }
                                             id="tempoDesligado"
                                             name="tempoDesligado"
                                             className="form-control"
-                                            placeholder={placaEnderecos.tempoDesligado}
-                                            ref={register({
-                                                required: 'Tempo Desligado obrigatório'
-                                            })} />
+                                            placeholder={ placaEnderecos.tempoDesligado}
+                                            />
                                         {errors.tempoDesligado && <span className="error">{errors.tempoDesligado.message}</span>}
                                     </Form.Group>
                                     <Form.Group as={Col} className="">
@@ -298,14 +297,12 @@ const Registro = (props) => {
                                                 setTempoVoltarTestes(e.target.value);
                                             }
                                             }
-                                            value={tempoVoltarTestes || placaEnderecos.tempoVoltarTestes}
+                                            value={tempoVoltarTestes || '' }
                                             id="tempoVoltarTestes"
                                             name="tempoVoltarTestes"
                                             className="form-control"
                                             placeholder={placaEnderecos.tempoVoltarTestes}
-                                            ref={register({
-                                                required: 'Tempo Voltar a testar obrigatório'
-                                            })} />
+                                            />
                                         {errors.tempoVoltarTestes && <span className="error">{errors.tempoVoltarTestes.message}</span>}
                                     </Form.Group>
                                     <Form.Group as={Col} className="">
@@ -316,14 +313,12 @@ const Registro = (props) => {
                                                 setTempoEntreTestes(e.target.value);
                                             }
                                             }
-                                            value={tempoEntreTestes || placaEnderecos.tempoEntreTestes}
+                                            value={tempoEntreTestes || '' }
                                             id="tempoEntreTestes"
                                             name="tempoEntreTestes"
                                             className="form-control"
                                             placeholder={placaEnderecos.tempoEntreTestes}
-                                            ref={register({
-                                                required: 'Tempo Entre os testes obrigatório'
-                                            })} />
+                                            />
                                         {errors.tempoEntreTestes && <span className="error">{errors.tempoEntreTestes.message}</span>}
                                     </Form.Group>
                                 </Row>
@@ -336,14 +331,12 @@ const Registro = (props) => {
                                                 setQuantidadePings(e.target.value);
                                             }
                                             }
-                                            value={quantidadePings || placaEnderecos.quantidadePings}
+                                            value={quantidadePings  || '' }
                                             id="quantidadePings"
                                             name="quantidadePings"
                                             className="form-control"
                                             placeholder={placaEnderecos.quantidadePings}
-                                            ref={register({
-                                                required: 'Quantidade Pings do teste obrigatório'
-                                            })} />
+                                            />
                                         {errors.quantidadePings && <span className="error">{errors.quantidadePings.message}</span>}
                                     </Form.Group>
                                     <Form.Group as={Col} className="">
@@ -354,14 +347,12 @@ const Registro = (props) => {
                                                 setIpEndereco(e.target.value);
                                             }
                                             }
-                                            value={ipEndereco || placaEnderecos.ipEndereco}
+                                            value={ipEndereco || '' }
                                             id="ipEndereco"
                                             name="ipEndereco"
                                             className="form-control"
                                             placeholder={placaEnderecos.ipEndereco}
-                                            ref={register({
-                                                required: 'Ip da Placa obrigatório'
-                                            })} />
+                                            />
                                         {errors.ipPlaca && <span className="error">{errors.ipPlaca.message}</span>}
                                     </Form.Group>
                                     <Form.Group as={Col} className="">
@@ -372,14 +363,12 @@ const Registro = (props) => {
                                                 setNetmask(e.target.value);
                                             }
                                             }
-                                            value={netmask || placaEnderecos.netmask}
+                                            value={netmask || '' }
                                             id="netmask"
                                             name="netmask"
                                             className="form-control"
                                             placeholder={placaEnderecos.netmask}
-                                            ref={register({
-                                                required: 'Netmask obrigatório'
-                                            })} />
+                                            />
                                         {errors.netmask && <span className="error">{errors.netmask.message}</span>}
                                     </Form.Group>
                                 </Row>
@@ -392,14 +381,12 @@ const Registro = (props) => {
                                                 setGateway(e.target.value);
                                             }
                                             }
-                                            value={gateway || placaEnderecos.gateway}
+                                            value={gateway || ''}
                                             id="gateway"
                                             name="gateway"
                                             className="form-control"
-                                            placeholder="Informe o ip do Alvo"
-                                            ref={register({
-                                                required: 'Ip da Placa obrigatório'
-                                            })} />
+                                            placeholder={placaEnderecos.gateway}
+                                           />
                                         {errors.ipPlaca && <span className="error">{errors.ipPlaca.message}</span>}
                                     </Form.Group>
                                     <Form.Group as={Col} className="">
@@ -410,14 +397,12 @@ const Registro = (props) => {
                                                 setDns(e.target.value);
                                             }
                                             }
-                                            value={dns || placaEnderecos.dns}
+                                            value={dns || ''}
                                             id="dns"
                                             name="dns"
                                             className="form-control"
                                             placeholder={placaEnderecos.dns}
-                                            ref={register({
-                                                required: 'Dns obrigatório'
-                                            })} />
+                                            />
                                         {errors.dns && <span className="error">{errors.dns.message}</span>}
                                     </Form.Group>
                                     <Form.Group as={Col} className="">
@@ -428,14 +413,12 @@ const Registro = (props) => {
                                                 setAlvo(e.target.value);
                                             }
                                             }
-                                            value={alvo || placaEnderecos.alvo}
+                                            value={alvo || '' }
                                             id="alvo"
                                             name="alvo"
                                             className="form-control"
                                             placeholder={placaEnderecos.alvo}
-                                            ref={register({
-                                                required: 'Ip da Placa obrigatório'
-                                            })} />
+                                           />
                                         {errors.ipPlaca && <span className="error">{errors.ifpPlaca.message}</span>}
                                     </Form.Group>
                                 </Row>
@@ -447,7 +430,7 @@ const Registro = (props) => {
                                                 setTipoAlvo(e.target.value);
                                             }
                                             }
-                                            value={tipoAlvo || ''}
+                                            value={tipoAlvo || '' || placaEnderecos.tipoAlvo}
                                             id="tipoAlvo"
                                             name="tipoAlvo"
                                             ref={register({
@@ -509,7 +492,7 @@ const Registro = (props) => {
                                             </Form>
                                         </Card.Body>
                                         <Card.Body className="map-linx p-3 pb-5">
-                                            {/* Mapa Componentizado Localizando onde esta a placa */}
+                                            Mapa Componentizado Localizando onde esta a placa
                                             <Mapa />
                                         </Card.Body>
 

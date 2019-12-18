@@ -30,7 +30,7 @@ const options = {
     yAxes: [{
       scaleLabel: {
         display: true,
-        labelString: 'Total',
+        labelString: 'Amperagem',
         fontSize: 20
       }
     }]

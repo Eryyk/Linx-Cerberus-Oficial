@@ -59,7 +59,7 @@ const Dashboard = (props) => {
             .then(data => {
                 setReset(data.data);
                 // console.log('testando');
-                // console.log(data.data);
+                console.log(data.data);
             })
             .catch(erro => { console.log(erro) })
     }

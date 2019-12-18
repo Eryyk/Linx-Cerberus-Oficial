@@ -21,13 +21,13 @@ import * as serviceWorker from './serviceWorker';
 
 const PermissaoAdmin = ({ component: Component }) => (
     <Route
-        render={props =>
-            usuarioAutenticado() && parseJwt().Role === "Administrador" ? (
-                <Component {...props} />
-            ) : (
-                    <Route to={{ pathname: "/Login" }} />
-                )
-        }
+      render={props =>
+        usuarioAutenticado() && parseJwt().tipoUsuario === "Administrador" ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/" }} />
+        )
+      }
     />
 );
 
@@ -36,7 +36,7 @@ const Permissao = ({component : Component}) => (
         render = {props =>
              usuarioAutenticado() ?
         (<Component {...props} />) :
-        (<Route to={{pathname : '/Login', state : {from : props.location}}} />)
+        (<Route to={{pathname : '/', state : {from : props.location}}} />)
         }
     />
 );
@@ -55,11 +55,10 @@ const rotas = (
                 <Route exact path='/Placas' component={CadastroPlaca} />
                 {/* <Permissao exact path='/alterarTempos' component={AlterarTempos} /> */}
                 <Route exact path='/Registro/:id' component={Registro} />
-
                 {/* <Route exact path='/registrarPlaca' component={CadastroPlacaEndereco} /> */}
                 <Route exact path='/RegistrosPlacas' component={RegistrosPlacas} />
                 {/* <Permissao exact path='/Dashboard' component={Dashboard} /> */}
-                <Route exact path='/Dashboard' component={Dashboard} />
+                <Permissao exact path='/Dashboard' component={Dashboard} />
                 {/* <Route path='/login' component={Login} />
                 <Route path='' component={Login}/> */}
                 <Route exact path="/" component={Login} />

@@ -28,7 +28,7 @@ export class Mapa extends Component{
                     lat: -23.5489,
                     lng: -46.6388
                 }}>
-                var lat = '';
+                {/* var lat = ''; */}
 {/* var lng = '';
 var address = {cep} or {endereço};
 geocoder.geocode( { 'address': address}, function(results, status) {
