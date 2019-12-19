@@ -82,7 +82,7 @@ const CadastroPlacas = () => {
                 .finally(() => {setLoading(false)})
         } else {
             placa.id = id;
-            Axios.put(Url + "Placas/", placa, {
+            Axios.put(Url + "Placas/" + id,  placa, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                     'Content-Type': 'application/json'

@@ -70,11 +70,7 @@ const RegistrosPLacas = (props) => {
     const listaEnderecos = () => {
         Axios.get(Url + "enderecos", {
             headers: {
-<<<<<<< HEAD
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
-=======
-                'Authorization': 'Bearer '+ localStorage.getItem('usuario'),
->>>>>>> 4c6873531334ffd0d2a131be5a39726fb4bbd2dc
                 'Content-Type': 'application/json'
             }
         })
@@ -146,7 +142,6 @@ const RegistrosPLacas = (props) => {
                 .then(data => {
                     listaPlacasEnderecos();
                     toast.success('placa registrada');
-
                 })
                 .catch(erro => {
                     toast.error("placa não registrada tente novamente ");
@@ -155,6 +150,7 @@ const RegistrosPLacas = (props) => {
     }
     return (
         <Container fluid={true}>
+           <ToastContainer position="top-right" autoClose={3000}></ToastContainer>
             <Row>
                 <Col xs="3" lg="2">
                     <MenuNav></MenuNav>

@@ -5,7 +5,7 @@ import Url from '../../services/api';
 import '../../assets/css/GeralT.css';
 import { usuarioAutenticado, parseJwt } from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
-
+import swal from 'sweetalert2'
 import { Col, Row, Image, Container, Card, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,6 +16,16 @@ class Login extends Component {
             email: '',
             senha: ''
         }
+    }
+
+    AlertError() {
+        swal.fire({
+            position: 'center-center',
+            type: 'error',
+            title: 'Email ou senha incorretos',
+            showConfirmButton: false,
+            timer: 1500
+          })
     }
 
     atualizaEstadoEmail(event) {
@@ -42,8 +52,9 @@ class Login extends Component {
             }
         })
         .catch(erro => {
-            toast.error('Usuário invalido');
-        })
+            this.AlertError();
+            console.log(erro);
+          })
     }
 
 

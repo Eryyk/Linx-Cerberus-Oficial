@@ -120,7 +120,7 @@ const CadastroEndereco = () => {
             empresaId: empresaId
         }
         if (id === 0) {
-            Axios.post(Url + "Enderecos", Endereco, {
+            Axios.post(Url + "Enderecos/" , Endereco, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                     'Content-Type': 'application/json'
@@ -136,7 +136,7 @@ const CadastroEndereco = () => {
                 .finally(() => { setLoading(false) })
         } else {
             Endereco.id = id;
-            Axios.put(Url + "Enderecos/", Endereco, {
+            Axios.put(Url + "Enderecos/" + id , Endereco, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario'),
                     'Content-Type': 'application/json'
@@ -158,7 +158,7 @@ const CadastroEndereco = () => {
                 })
                 .catch(erro => {
                     // console.log(erro)
-                    toast.erro('Ocorreu um erro, tente novamente');
+                    toast.error('Ocorreu um erro, tente novamente');
                     setId(0);
                     setCep();
                     setEstado();

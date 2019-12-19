@@ -121,11 +121,12 @@ const Dashboard = (props) => {
 
                                 <CardSimples
                                     title="Total Resets"
-                                    texto={reset.totaisResets}
+                                    texto="0"
                                     />
                                 <CardSimples
                                     title="Ultimo Resets"
-                                    texto={placaEnderecos.ultimoReset}
+                                    texto="00/00/000 00:00"
+                                    // texto={placaEnderecos.ultimoReset}
                                     // texto={moment(reset.ultimoReset).format("MM/dd/yyyy HH:mm")}
                                 />
                                 <CardSimples title="Alertas" />
